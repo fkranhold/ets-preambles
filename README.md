@@ -67,7 +67,7 @@ These three classes establish an overall layout that is inspired by Bringhurstâ€
 book, via KOMA-internal commands. Before using them, please note the following:
 
  * Each of these classes requires a language option (such as `ngerman` or
-   `british`) as an argument.  They will load `babel`, `csquotes` and `isodate`
+   `british`) as an argument.  They will load `babel`, `csquotes`, and `isodate`
    to get language-specific quotation styles and date formats.
  * The paper format for `etsbook` and `etsartcl` can be set via `paper=`, the
    default being `b5`.  With `a5` and `b5`, you will get decent typeareas; any
@@ -125,7 +125,7 @@ change these templates to your needs (e.g. add your name and address in the
 letter template), I suggest to _copy_ them to your local TEXMF tree[^3], by
 calling (from within the repositoryâ€™s main folder):
 
-    mkdir -d $TEXMFHOME/local/templates/ets
+    mkdir -p $TEXMFHOME/local/templates/ets
     cp templates/* $TEXMFHOME/local/templates/ets/
 
 [^3]: According to the [TDS convention](https://tug.org/tds/), the folder
