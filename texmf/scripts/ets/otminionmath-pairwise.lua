@@ -1,0 +1,16 @@
+function suppl_math_kerning ( s )
+  s = s:gsub ("f\\colon",              "f\\mkern-2mu\\colon"   )
+  s = s:gsub ("([H])%s-_%s-([p])",     "%1_{\\mkern-1.2mu %2}" )
+  s = s:gsub ("([H])%s-_%s-([{}][p])", "%1_{\\mkern-1.2mu %2}" )
+  s = s:gsub ("([V])%s-_%s-([p])",     "%1_{\\mkern-1.6mu %2}" )
+  s = s:gsub ("([V])%s-_%s-([{}][p])", "%1_{\\mkern-1.6mu %2}" )
+  s = s:gsub ("([H])%s-_%s-([j])",     "%1_{\\mkern-1.5mu %2}" )
+  s = s:gsub ("([H])%s-_%s-([{}][j])", "%1_{\\mkern-1.5mu %2}" )
+  s = s:gsub ("([N])%s-_%s-([j])",     "%1_{\\mkern-1.2mu %2}" )
+  s = s:gsub ("([N])%s-_%s-([{}][j])", "%1_{\\mkern-1.2mu %2}" )
+  s = s:gsub ("([f])%s-_%s-([j])",     "%1_{\\mkern-2.5mu %2}" )
+  s = s:gsub ("([f])%s-_%s-([{}][j])", "%1_{\\mkern-2.5mu %2}" )
+  s = s:gsub ("([f])%s-_%s-([p])",     "%1_{\\mkern-1.9mu %2}" )
+  s = s:gsub ("([f])%s-_%s-([{}][p])", "%1_{\\mkern-1.9mu %2}" )
+  return s
+end

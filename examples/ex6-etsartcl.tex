@@ -1,0 +1,42 @@
+\documentclass[british,paper=a5]{etsartcl}
+%% \usepackage{otminionpro}  % and otminionmath, if you want
+\usepackage{lipsum}
+\usepackage{etsbib,etsthm}
+\setmainfont{EBGaramond}  % alternatively, use otminionpro (with optical sizes!)
+\input{mythms}
+\bibliography{refs.bib}
+
+\begin{document}
+
+\author  {Florian Kranhold}
+\title   {Optical sizes}
+\subtitle{A case study}
+\subject {University of \LaTeX}
+
+\maketitle
+
+\begin{abstract}\lipsum[2][2-6]\end{abstract}
+
+\section{Introduction}
+\lipsum[1-3]
+
+\section{Preliminaries}
+\lipsum[4-8]
+
+\subsection{A variation of the Alexander trick}
+
+\lipsum[2] Again\footnote{Compare the third example file.} we quote \cite{Bredon}.
+
+\begin{defi}A \emph{group} is a groupoid with one object.\end{defi}
+
+\begin{figure}
+  \centering [Some fancy figure.]
+  \caption{\lipsum[1][1-3]}
+\end{figure}
+
+\lipsum[3]
+
+\printbibliography
+
+
+\end{document}

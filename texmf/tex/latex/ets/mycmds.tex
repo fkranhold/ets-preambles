@@ -1,0 +1,36 @@
+%% Commutative diagrams; the arrow heads have to match the font.
+\usepackage{tikz-cd}
+\tikzcdset{arrow style=math font}
+
+%% Shorthands for \mathbb, \mathbf, and \mathcal.  Depending on the TeX version,
+%% \bf may still be defined, so we treat this case with a bit more care.
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\ca}[1]{\mathcal{#1}}
+\providecommand{\bf}{}
+\renewcommand{\bf}[1]{\mathbf{#1}}
+
+%% Typical number sets
+\newcommand{\N}{\bb N}
+\newcommand{\Z}{\bb Z}
+\newcommand{\Q}{\bb Q}
+\newcommand{\R}{\bb R}
+\newcommand{\C}{\bb C}
+
+%% The opposite of \colon, e.g. in f:X<->Y:g
+\newcommand*\lon{%
+  \nobreak\mskip4mu plus1mu
+  \mathpunct{}%
+  \nonscript\mkern-\thinmuskip{:}%
+  \mskip1mu\relax}
+
+%% A more efficient way to write spans (by generators)
+\newcommand{\gen}[1]{\langle #1\rangle}
+
+%% Some choices for symbols
+\AtBeginDocument{
+  \let\epsilon = \varepsilon
+  \let\le      = \leqslant
+  \let\ge      = \geqslant
+  \let\leq     = \leqslant
+  \let\geq     = \geqslant
+}

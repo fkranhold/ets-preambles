@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{etsbib}[2025/10/26 Minor adjustments to the biblatex package]
+
+%% We need otfontstyles for \tbfigures, see below.
+\RequirePackage{otfontstyles}
+
+%% Include biblatex.  We use biber as a beckend, and the option locallabelwidth
+%% appears to necessary in conjunction with tabular text figures below;
+%% otherwise the indentation is faulty.
+\RequirePackage[backend=biber,locallabelwidth=true]{biblatex}
+
+% Oxford comma in british bibliography
+\DefineBibliographyExtras{british}{\renewcommand{\finalandcomma}{,}}
+
+%% In the printed bibliography (\printbibliography), the entries should be
+%% numbered by tabular text figures.  This is again another snippet from the
+%% tabfigures package.
+\makeatletter
+\AtBeginDocument{%
+  \let\tf@@biblabel\@biblabel
+  \def\@biblabel#1{\tf@@biblabel{\tbfigures{#1}}}%
+  \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{\tbfigures{#1}}}%
+}
+\makeatother

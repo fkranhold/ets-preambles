@@ -1,0 +1,40 @@
+\documentclass[ngerman]{etslttr}
+%% \usepackage{otminionpro}
+\usepackage{hyperref}      % necessary if you want to use \mail or \web.
+\usepackage{lipsum}        % for dummy texts
+\setmainfont{EBGaramond}   % or use the otminionpro packageg
+
+\begin{document}
+
+\author{Peter Musterfrau}
+\title {Änderungen der Bestimmungen zur Verordnung}
+
+%% Own address in letter header
+\setkomavar{fromname}   {Peter Musterfrau}
+\setkomavar{fromaddress}{Hinter dem Tal 2\\54321 Musterheim}
+\setkomavar{fromemail}  {\mail{peter@musterfrau.org}\\\web{www.musterfrau.org}}
+
+%% Return address for the envelope window (line breaks will be replaced by ·)
+\setkomavar{backaddress}{Peter Musterfrau\\Hinter dem Tal 2\\54321 Musterheim}
+
+%% Reference, place, subject, and signature
+\setkomavar{yourref}  {ejdrfow24\,·\,004}
+\setkomavar{place}    {Musterheim}
+\setkomavar{subject}  {Änderung der Bestimmungen zur Verordnung}
+\setkomavar{signature}{Peter Musterfrau}
+
+\begin{letter}{%
+    Petra Mustermann\\
+    Universität Musterhausen\\
+    Vor dem Berg 1\\
+    12345 Musterhausen}
+  
+  \opening{Sehr geehrte Frau Mustermann,}
+
+  gerne schreibe ich Ihnen auf Pseudolatein: \lipsum[1][3-7]
+
+  \closing{Mit freundlichen Grüßen}
+  %% \encl{Lebenslauf}
+\end{letter}
+
+\end{document}

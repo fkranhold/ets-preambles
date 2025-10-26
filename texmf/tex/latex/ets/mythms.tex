@@ -1,0 +1,63 @@
+%% This list of definitions assumes that the etsthm package has been loaded;
+%% otherwise the theoremstyles etsplain and etsdefinition are undefined.
+
+%% The parent numbering is always section.  In an article, this would be
+%% someting like 2, so the theorem itself will be 2.3.  In a book, the section
+%% would be something like 2.1, so the theorem ifself will be 2.1.3.
+
+%% Italic ones
+\theoremstyle{etsplain}
+\newtheorem{thm}    {Theorem}[section]
+\newtheorem{lem}    [thm]{Lemma}
+\newtheorem{prop}   [thm]{Proposition}
+\newtheorem{cor}    [thm]{Corollary}
+
+%% Regular ones
+\theoremstyle{etsdefinition}
+\newtheorem{defi}   [thm]{Definition}
+\newtheorem{expl}   [thm]{Example}
+\newtheorem{nota}   [thm]{Notation}
+\newtheorem{constr} [thm]{Construction}
+\newtheorem{outl}   [thm]{Outlook}
+\newtheorem{exer}   [thm]{Exercise}
+\newtheorem{rmk}    [thm]{Remark}
+\newtheorem{rmd}    [thm]{Reminder}
+\newtheorem{idea}   [thm]{Idea}
+
+%% The remaining seemingly redundant lines are necessary due to the following
+%% bug: https://tex.stackexchange.com/a/732053
+\AddToHook{env/prop/begin}{\crefalias{thm}{prop}}
+\crefname{prop}{proposition}{propositions}
+
+\AddToHook{env/lem/begin}{\crefalias{thm}{lem}}
+\crefname{lem}{lemma}{lemmata}
+
+\AddToHook{env/cor/begin}{\crefalias{thm}{cor}}
+\crefname{cor}{corollary}{corollaries}
+
+\AddToHook{env/defi/begin}{\crefalias{thm}{defi}}
+\crefname{defi}{definition}{definitions}
+
+\AddToHook{env/expl/begin}{\crefalias{thm}{expl}}
+\crefname{expl}{example}{examples}
+
+\AddToHook{env/nota/begin}{\crefalias{thm}{nota}}
+\crefname{nota}{notation}{notations}
+
+\AddToHook{env/constr/begin}{\crefalias{thm}{constr}}
+\crefname{constr}{construction}{constructions}
+
+\AddToHook{env/outl/begin}{\crefalias{thm}{outl}}
+\crefname{outl}{outlook}{outlooks}
+
+\AddToHook{env/exer/begin}{\crefalias{thm}{exer}}
+\crefname{exer}{exercise}{exercises}
+
+\AddToHook{env/rmk/begin}{\crefalias{thm}{rmk}}
+\crefname{rmk}{remark}{remarks}
+
+\AddToHook{env/rmd/begin}{\crefalias{thm}{rmd}}
+\crefname{rmd}{reminder}{reminder}
+
+\AddToHook{env/idea/begin}{\crefalias{thm}{idea}}
+\crefname{idea}{ideas}{ideas}

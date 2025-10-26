@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{otminionpro}[2025/10/26 Use Minion Pro as an OpenType font]
+
+%% Get access to OpenType features
+\RequirePackage{fontspec}
+
+%% Set Minion Pro as our main font, with proportional text figures.
+%% We only use Regular and Italic, but with all optical sizes.
+%% If an external documentclass wants us to use bold, then at least
+%% use Semibold instead (hence the BoldFeatures).
+\setmainfont{MinionPro-}[
+Numbers={OldStyle,Proportional},
+UprightFeatures={
+  SizeFeatures={
+    {Size={-9.4},     Font=*Capt},
+    {Size={9.4-13.0}, Font=*Regular},
+    {Size={13.0-19.9},Font=*Subh},
+    {Size={19.9-},    Font=*Disp}
+  }},
+ItalicFeatures={
+  SizeFeatures={
+    {Size={-9.4},     Font=*ItCapt},
+    {Size={9.4-13.0}, Font=*It},
+    {Size={13.0-19.9},Font=*ItSubh},
+    {Size={19.9-},    Font=*ItDisp}
+  }},
+BoldFeatures={
+  SizeFeatures={
+    {Size={-9.4},     Font=*SemiboldCapt},
+    {Size={9.4-13.0}, Font=*Semibold},
+    {Size={13.0-19.9},Font=*SemiboldSubh},
+    {Size={19.9-},    Font=*SemiboldDisp}
+  }}]
+
+%% \textsw for contextual swashes
+\newfontface\Swash{MinionPro-It}[
+Numbers={OldStyle,Proportional},
+Contextuals=Swash,
+SizeFeatures={
+  {Size={1.0-8.4},Font=*Capt},
+  {Size={8.4-13.0}},
+  {Size={13.0-19.9},Font=*Subh},
+  {Size={19.91-},Font=*Disp}
+}]
+\DeclareTextFontCommand{\textsw}{\Swash}
+
+%% Break MinionPro’s Th-ligature
+\RequirePackage{selnolig}
+\nolig{Th}{T|h}
+
+%% Load OpenType font styles
+\RequirePackage{otfontstyles}

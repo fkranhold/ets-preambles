@@ -1,0 +1,79 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{otfontstyles}[2025/10/26 Declare font styles using OpenType features]
+
+%% The fontspec package gives aus access to OpenType features.  It requires the
+%% document to be compiled with LuaTeX or XeTeX.  Numbers should be proportional
+%% text figures by default.
+\RequirePackage{fontspec}
+\defaultfontfeatures{Numbers={OldStyle,Proportional}}
+
+%% Whatever monospace font we may load later, it should match the
+%% x-height of our main font.
+\defaultfontfeatures[\ttfamily]{Scale=MatchLowercase}
+
+%% The microtype package should always be included.  We use it here mainly for
+%% letterspacing adjustments.
+\RequirePackage[babel]{microtype}
+
+%% Depending on the context (all caps, as well as small caps in titles, labels
+%% or acronyms), we want different kinds of letterspacing. Apart from all caps,
+%% the expected shape is small caps.  While the actual amout of letterspace is
+%% declared in the last bracket (150, 100, 50, 25), we also need to adjust the
+%% interword spacing for all caps and sections (spacing=), see §5.3 of the
+%% microtype documentation.
+%%
+%% There is a bug in microtype (https://tex.stackexchange.com/questions/752633):
+%% If not explicitly defined, the outer spacing (i.e.\ the size of the white
+%% spaces sorrounding the letterspaced segment) will be set to match the (inner)
+%% spacing (so far, no bug), but switching the context will not switch the outer
+%% spacing accordingly.  Luckily, only acronyms will ever be sorrounded by white
+%% spaces, so we can remedy this bug by setting the desired outer spacing for
+%% acronyms (80*) in all four contexts.
+\SetTracking[context=allcaps,spacing={600*,,},outer spacing={80*,,}]{encoding=*}         {150}
+\SetTracking[context=sctitle,spacing={400*,,},outer spacing={80*,,}]{encoding=*,shape=sc}{100}
+\SetTracking[context=sclabel,spacing={300*,,},outer spacing={80*,,}]{encoding=*,shape=sc}{ 50}
+\SetTracking[context=acronym,                 outer spacing={80*,,}]{encoding=*,shape=sc}{ 25}
+
+%% Now we declare \allcaps: All caps will always be letterspaced (context:
+%% allcaps) and \addfontfeatures{Letters=Uppercase} does two things:
+%%   1. It transforms all letters to uppercase (if they are not already), and
+%%   2. It activates the OpenType features case and cpsp.
+%% See the fontspec documentation §3.1 for more details.
+\newcommand{\allcaps}{%
+  \microtypecontext{tracking=allcaps}\lsstyle\addfontfeatures{Letters=Uppercase}}
+
+%% Similarly, we set font declations small caps in titles and labels.  Uppercase
+%% letters are transformed to small caps via the OpenType feature c2sc.
+\newcommand{\sctitle}{%
+  \scshape\lsstyle\microtypecontext{tracking=sctitle}\addfontfeatures{Letters=UppercaseSmallCaps}}
+
+\newcommand{\sclabel}{%
+  \scshape\lsstyle\microtypecontext{tracking=sclabel}\addfontfeatures{Letters=UppercaseSmallCaps}}
+
+%% Finally, we define a semantic command (similar to \emph) for acronyms, which
+%% are set as mildly spaced small caps with the OpenType feature c2sc as above.
+\NewDocumentCommand{\acr}{m}{%
+  \textmicrotypecontext{tracking=acronym}{\scshape\lsstyle\addfontfeatures{Letters=UppercaseSmallCaps} #1}}
+
+%% Establish a command for tabular text figures (e.g. for numbered lists or
+%% table of contents).  The name \tbfigures is used in the tabfigures package by
+%% Andreas Bühmann and Michael Ummels, so we _could_ use that package to
+%% implement tabular figures at several places right after the definition below.
+%% We refrain from doing so for two reasons:
+%% 1. The tabfigures package requires us to state at the very beginning where
+%%    to use tabular figures, and in our setting, this depends on the components
+%%    we use (such as etsbib).
+%% 2. We actually want a modified version of the toc option for etsbook,
+%%    as we want to suppress page numbers for chapter entries.
+\newcommand{\tbfigures}{\addfontfeatures{Numbers={OldStyle,Monospaced}}}
+
+%% Use tabular text figures in all numbered lists.  (I know, this is strictly
+%% speaking not really a font declaration, but the alternative would be to
+%% repeat this in each documentclass, and I can think of no situation where this
+%% setting is undesirable.)  This is extracted from the tabfigures packages.
+\AtBeginDocument{%
+  \patchcmd{\labelenumi}  {\theenumi}  {\tbfigures{\theenumi}}  {}{}%
+  \patchcmd{\labelenumii} {\theenumii} {\tbfigures{\theenumii}} {}{}%
+  \patchcmd{\labelenumiii}{\theenumiii}{\tbfigures{\theenumiii}}{}{}%
+}%
+

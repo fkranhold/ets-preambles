@@ -1,0 +1,17 @@
+%% This document requires the bibliography file ./refs.bib, and as usual, you
+%% have to run lualatex, biber, and then lualatex twice in order to get the
+%% citations right.
+\documentclass[british,headings=standardclasses]{scrartcl} % “References” with main font
+%% \usepackage{otminionpro}
+\usepackage{etsbib}
+\setmainfont{EBGaramond}  % or use the otminionpro package
+\bibliography{refs.bib}
+
+\begin{document}
+
+We follow the approach from \cite[§\,\textsc{ii}.3]{Bredon}, see also
+\cite[p.\,132]{Markl-Shnider-Stasheff}.
+
+\printbibliography
+
+\end{document}

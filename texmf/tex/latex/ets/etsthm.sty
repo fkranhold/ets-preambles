@@ -1,0 +1,35 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{etsthm}[2025/10/26 Layouts and bugfixes for theorem environments]
+
+\RequirePackage{otfontstyles}
+\RequirePackage{amsthm}
+\RequirePackage{hyperref}
+\RequirePackage[noabbrev,nameinlink]{cleveref}
+
+%% We define the two theoremstyles etsplain (with italic body) and etsdefinition
+%% (with normal body text), and we want to use the \sclabel font declaration
+%% from otfontstyles for the theorem head.  One could do this by putting
+%% \sclabel into the 6th argument of \newtheoremstyle; however, the default
+%% mechanism does not reset OpenType features for the theorem note (used
+%% e.g. for names of famous theorems), and \sclabel uses c2sc.  We therefore
+%% have to write our own way of building the theorem head and add a pair of
+%% curly brackets to achieve proper grouping.  Furthermore, LaTeX surprisingly
+%% adds some space in front of the very first character of the theorem head (I
+%% do not know why), so we have to correct this using \kern – what a mess!
+\newtheoremstyle{etsplain}{}{}{\itshape}{}{}{.}{.4em}%
+  {{\kern-.025em\sclabel\thmname{#1}\thmnumber{ #2}}\thmnote{\hspace*{.3em}(#3)}}
+
+\newtheoremstyle{etsdefinition}{}{}{}{}{}{.\ }{.4em}%
+  {{\kern-.025em\sclabel\thmname{#1}\thmnumber{ #2}}\thmnote{\hspace*{.3em}(#3)}}
+
+%% A command between two environments, which takes effect somewhere else (e.g. a
+%% figure that is placed on top of a page, or an \enlargethispage) will cause
+%% additional space between the environments. The following patches prevent
+%% this, see https://tex.stackexchange.com/questions/505243
+\newlength{\intendedDistance}
+\BeforeBeginEnvironment{figure}{\setlength{\intendedDistance}{\lastskip}\addvspace{-\lastskip}}
+\AfterEndEnvironment   {figure}{\addvspace{\intendedDistance}}
+\BeforeBeginEnvironment{table} {\setlength{\intendedDistance}{\lastskip}\addvspace{-\lastskip}}
+\AfterEndEnvironment   {table} {\addvspace{\intendedDistance}}
+\pretocmd{\@enlargepage}{\setlength{\intendedDistance}{\lastskip}\addvspace{-\lastskip}}{}{}
+\apptocmd{\@enlargepage}{\addvspace{\intendedDistance}}{}{}

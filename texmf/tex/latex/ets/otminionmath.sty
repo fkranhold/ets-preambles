@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{otminionmath}[2025/10/26 Use Minion Math as an OpenType font]
+
+%% unicode-math automatically loads fontspec if it has not been loaded before.
+%% “math-style=TeX” causes uppercase Greek letters to be non-italic by default.
+\RequirePackage[math-style=TeX]{unicode-math}
+
+%% Some trial-and-error adjustments to the Minion Math kerning tables.
+%% These files are stored in $TEXMFHOME/scripts/ets/:
+\directlua{
+  require("otminionmath-staircase.lua") % is included via the RaeFeature +staircase below
+  require("otminionmath-pairwise.lua")  % will be activated after hyperref has been loaded
+}
+\AddToHook{begindocument/before}{\directlua{luatexbase.add_to_callback ( 
+    "process_input_buffer" , suppl_math_kerning , "suppl_math_kerning" ) }}
+
+%% Now set MinionMath as math font
+\setmathfont{MinionMath-}[
+SizeFeatures={
+  {Size={-6},   Font=*Tiny,Style=MathScriptScript},
+  {Size={6-9.4},Font=*Capt,Style=MathScript},
+  {Size={9.4-}, Font=*Regular,RawFeature={+staircase}}
+}]
+\setmathfont[version=semibold]{MinionMath-Semibold}
+
+%% Slightly less “glue” as in the default settings, which are
+%% \medmuskip   = 4mu plus 2mu minus 4mu
+%% \thickmuskip = 5mu plus 5mu
+\medmuskip   = 4mu plus 1mu minus 2mu
+\thickmuskip = 5mu plus 3mu
+
+%% Indices a bit higher, less tracking in math mode.
+\everymath=\expandafter{%
+  \the\everymath%
+  \Umathsubshiftdown\textstyle=.4ex%
+  \Umathsubshiftdown\scriptstyle=.35ex%
+  \Umathsubshiftdown\crampedscriptstyle=.28ex%
+  \Umathquad\textstyle=.8em%
+  \Umathquad\scriptstyle=.8em%
+}
+\everydisplay=\expandafter{%
+  \the\everydisplay%
+  \Umathsubshiftdown\displaystyle=.4ex%
+  \Umathsubshiftdown\textstyle=.4ex%
+  \Umathquad\textstyle=.8em%
+  \Umathquad\displaystyle=.8em%
+}
+
+%% Less spacing around \colon
+\let\oricolon\colon
+\renewcommand{\colon}{\mskip-1.3mu\oricolon\mskip-1mu}
+
+%% Map \mathbf  to MinionPro-Semibold, to have proper kerning.
+%% Map \mathcal to MinionPro-Italic with contextual swashes.
+\AtBeginDocument{\renewcommand\mathbf[1]{\text{\bfseries #1}}}
+\renewcommand\mathcal[1]{\text{\textsw{#1}}{}}

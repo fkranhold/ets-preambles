@@ -1,0 +1,28 @@
+\documentclass{scrartcl}
+\usepackage{otfontstyles}
+%% \usepackage{otminionpro}
+\setmainfont{EBGaramond} % or use the otminionpro package
+\usepackage{showkerning} % makes kerning and letterspacing visible
+\usepackage{enumitem}    % set small lists with the nosep option
+
+\begin{document}
+
+\begin{center}
+  {\allcaps The big picture}\\
+  {\sctitle A smaller title}
+\end{center}
+
+Acronyms like \acr{GNU} and \acr{HTML} get a small amount of letterspacing.
+
+{\sclabel Definition 3.1.}\enskip This label has slighly more letterspacing.
+
+Finally, I would like to demonstrate that
+\begin{enumerate}[nosep]
+\item numbered
+\item lists
+\item use
+\item tabular
+\item figures.
+\end{enumerate}
+
+\end{document}
