@@ -1,7 +1,7 @@
 # ETS preambles
 
-This repository contains several self-written preambles for LuaTeX that serve
-the following purposes:
+This repository contains several preambles for LuaTeX that serve the following
+purposes:
 
  * Use OpenType features and contextual tracking for advanced font declarations
    (such as all caps and “all small caps” in titles or labels).
@@ -46,9 +46,9 @@ small caps with `c2sc`).  This package is used by all upcoming components.
 ### OpenType Minion packages (`otminionpro`, `otminionmath`)
 
 The two packages `otminionpro` and `otminionmath` implement the aforementioned
-commercial fonts (including optical sizes, contextual swashes, breaking the
-Th-ligature, and some spacing adjustments).  In order to use them, you need the
-commercial fonts Minion Pro and Minion Math, respectively.
+commercial fonts Minion Pro and Minion Math (including optical sizes, contextual
+swashes, breaking the Th-ligature, and some spacing adjustments).  In order to
+use them, you need the respective fonts files.
 
 However, none of the following components actually relie on these specific
 fonts.  The base package `otfontstyles` works well with any font that has the
@@ -64,22 +64,21 @@ hence also loads `hyperref`; it therefore should be the last package to call.
 ### Documentclasses (`etsbook`, `etsartcl`, `etslttr`)
 
 These three classes establish an overall layout that is inspired by Bringhurst’s
-“Elements of Typographic Style” via KOMA-internal commands. Before using them,
-please note the following:
+book, via KOMA-internal commands. Before using them, please note the following:
 
  * Each of these classes requires a language option (such as `ngerman` or
    `british`) as an argument.  They will load `babel`, `csquotes` and `isodate`
    to get language-specific quotation styles and date formats.
  * The paper format for `etsbook` and `etsartcl` can be set via `paper=`, the
-   default being `b5` (176×250mm²).  With `a5` and `b5`, you will get decent
-   typeareas; any other choice will merely use the preconfigured typearea for
-   `b5` as a fallback.  The default paper format for `etslttr` is `a4` with a
-   lot of free area.
+   default being `b5`.  With `a5` and `b5`, you will get decent typeareas; any
+   other choice will merely use the preconfigured typearea for `b5` as a
+   fallback.  The default paper format for `etslttr` is `a4` with a lot of free
+   area.
  * The class `etsbook` allows you to put a cover figure on the title page.  This
    can be set using the command `\coverfigure`.  If you do not use this command,
    the corresponding area is left empty.
 
-### My theorems and commands (`mythms`, `mycmds`, `mydefs`)
+### My theorems and commands (`mythms`, `mycmds`)
 
 The components `mythms` and `mycmds` are mere `tex`-files containing theorem
 definitions (using the styles defined in `etsthm`) and math commands (assuming
@@ -109,21 +108,21 @@ In order to see the different components in action, and also to check whether
 they work properly on your system, have a look at the small examples that are
 contained in the folder `./examples`.  You should be able to compile them if:
 
-  1. you installed the components as described before,
-  2. you installed the fonts that are called (see below), and
+  1. you have installed the components as described before,
+  2. you have installed the fonts that are called (see below), and
   3. you use `lualatex` for the compilation.
 
 ## Templates and shortcuts
 
-Even though the usage of these preambles significantly reduces the amount of
-code necessary to put the beginning of each TeX file, you might still want to
-have a mechanism that produces a new document containing a rough structure
-waiting to be filled with content (especially for letters, where you have to set
-several KOMA variables).
+Even though using these preambles significantly reduces the amount of code
+necessary to put at the beginning of each TeX file, you might still want to have
+a mechanism that produces a new document containing the rough structure waiting to
+be filled with content (especially for letters, where you have to set several
+KOMA variables).
 
 The folder `./templates` addresses this requirement.  Since you might want to
 change these templates to your needs (e.g. add your name and address in the
-letter template), I suggest to _copy_ them to your local TEXMF tree[^3], e.g. by
+letter template), I suggest to _copy_ them to your local TEXMF tree[^3], by
 calling (from within the repository’s main folder):
 
     mkdir -d $TEXMFHOME/local/templates/ets
@@ -145,10 +144,10 @@ folder, and you end up having a main file to work with.
 
 ### Commercial fonts
 
-As mentioned above, the fonts Minion Pro and Minion Math are commercial and have
-to be purchased and installed before you will be able to use either
-`otminionpro` or `otminionmath`.  According to the TDS convention, you should
-put the corresponding OTFs into the folders
+As mentioned above, the fonts Minion Pro and Minion Math have to be purchased
+and installed before you will be able to use either `otminionpro` or
+`otminionmath`.  According to the TDS convention, you should put the
+corresponding OTFs into the folders
 
     $TEXMFHOME/fonts/opentype/adobe/MinionPro
     $TEXMFHOME/fonts/opentype/typoma/MinionMath
@@ -170,16 +169,11 @@ workaround is described in the aforementioned thread.
 
 ### Other fonts
 
-Apart from the taylored packages `otminionpro` and `otminionmath`, all other
-components can be used with different fonts.  Many of my examples use EB
-Garamond as a main font, as it has the desired OpenType features and is
-available on most TeX distributions.
+Apart from `otminionpro` and `otminionmath`, all components can be used with
+arbitrary fonts.  Many of my examples use EB Garamond as their main font, as it has
+the desired OpenType features and is available on most TeX distributions.
 
 Finally, if you look for a monospace font that matches MinionPro, my suggestion
-would be [Monaspace Xenon](https://monaspace.githubnext.com/), which you can
-easily find on Github; the OTFs should be stored in 
-
-    $TEXMFHOME/fonts/opentype/githubnext/monaspace
-
-Monaspace’s texture healing mechanism is implemented via the OpenType feature
-`calt`, which is active per default when using `\setmonofont`.
+would be to use [Monaspace Xenon](https://monaspace.githubnext.com/).  Its
+texture healing mechanism is implemented via the OpenType feature `calt`, which
+is active per default when using `\setmonofont`.
