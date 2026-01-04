@@ -44,7 +44,7 @@
 \NewDocumentCommand{\web} {m}{\href{#1}{#1}}
 
 %% Prepare options for hyperref, similar to etsbook and etsartcl
-\PassOptionsToPackage{hidelinks,pdfusetitle}{hyperref}
+\PassOptionsToPackage{pdfusetitle}{hyperref}
 
 %% Setting the typearea, with similar arguments as in etsbook/etsartcl.
 \areaset{300pt}{650pt}

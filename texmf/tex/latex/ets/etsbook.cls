@@ -58,10 +58,7 @@
 %% and section title.  Finally, we adjust the space before and after the actual
 %% section title.
 \setkomafont{section}{\mdseries\sctitle}
-\renewcommand*{\sectionformat}{%
-  \mdseries\sctitle
-  \thesection\hspace*{.8em}%
-}
+\renewcommand*{\sectionformat}{\mdseries\sctitle\thesection\hspace*{.75em}}
 \RedeclareSectionCommand[beforeskip  = 1\baselineskip plus 2pt minus 2pt,%
                          afterskip   = 1\baselineskip plus 2pt minus 2pt,%
                          afterindent = false]{section}
@@ -69,7 +66,7 @@
 %% Finally, we also design subsection headings.  After the above examples of
 %% chapters and sections, these three lines should be fairly self-explanatory.
 \setkomafont{subsection}{\mdseries\itshape}
-\renewcommand*{\subsectionformat}{\mdseries\upshape\thesubsection\enskip}
+\renewcommand*{\subsectionformat}{\mdseries\upshape\thesubsection\hspace*{.5em}}
 \RedeclareSectionCommand[beforeskip  = .97\baselineskip plus 2pt minus 2pt,%
                          afterskip   = .97\baselineskip plus 2pt minus 2pt,%
                          afterindent = false]{subsection}
@@ -168,8 +165,7 @@
 \makeatother
 
 %% Finally, prepare options for the hyperref package, which might be loaded later:
-%% * hidelinks (internal and external links are printed just like usual text),
 %% * pdfusetitle (use what you by \title and \author as PDFtitle and PDFauthor),
 %% * bookmarksnumbered=true (chapter/(sub-)section numbers in the PDF table of contents)
 %% * bookmarksdepth=2 (go until subsections although the printed TOC doesn’t display them)
-\PassOptionsToPackage{hidelinks,pdfusetitle,bookmarksnumbered=true,bookmarksdepth=2}{hyperref}
+\PassOptionsToPackage{pdfusetitle,bookmarksnumbered=true,bookmarksdepth=2}{hyperref}

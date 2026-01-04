@@ -19,7 +19,7 @@
 \KOMAoptions{
   numbers  = enddot,           % “1. Section” instead of “1. Section”.
   headings = standardclasses,  % Use the main font for titles
-  paper    = \paperformat      % Give scrbook the paperformat from above.
+  paper    = \paperformat      % Give scrarctl the paperformat from above.
 }
 
 %% All packages receive the language from the global option.
@@ -34,14 +34,14 @@
 
 %% Now we design the section headings as in etsbook.
 \setkomafont{section}{\mdseries\sctitle}
-\renewcommand*{\sectionformat}{\mdseries\sctitle\thesection.\hspace*{.8em}}
+\renewcommand*{\sectionformat}{\mdseries\sctitle\thesection.\hspace*{.75em}}
 \RedeclareSectionCommand[beforeskip  = 1\baselineskip plus 2pt minus 2pt,%
                          afterskip   = 1\baselineskip plus 2pt minus 2pt,%
                          afterindent = false]{section}
 
 %% … and subsections!
 \setkomafont{subsection}{\mdseries\itshape}
-\renewcommand*{\subsectionformat}{\mdseries\upshape\thesubsection\enskip}
+\renewcommand*{\subsectionformat}{\mdseries\upshape\thesubsection\hspace*{.5em}}
 \RedeclareSectionCommand[beforeskip  = .97\baselineskip plus 2pt minus 2pt,%
                          afterskip   = .97\baselineskip plus 2pt minus 2pt,%
                          afterindent = false]{subsection}
@@ -54,7 +54,7 @@
   \areaset{280pt}{480pt}
   \setlength{\footskip}{2.5\baselineskip}
 }{
-  \areaset{300pt}{570pt}
+  \areaset{320pt}{570pt}
   \setlength{\footskip}{3\baselineskip}
 }
 
@@ -84,4 +84,4 @@
 
 %% Finally, prepare options for the hyperref package, which might be loaded later;
 %% see the comments in etsbook for explanations.
-\PassOptionsToPackage{hidelinks,pdfusetitle,bookmarksnumbered=true,bookmarksdepth=2}{hyperref}
+\PassOptionsToPackage{pdfusetitle,bookmarksnumbered=true,bookmarksdepth=2}{hyperref}
