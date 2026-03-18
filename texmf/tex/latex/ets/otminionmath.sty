@@ -8,7 +8,7 @@
 %% Some trial-and-error adjustments to the Minion Math kerning tables.
 %% These files are stored in $TEXMFHOME/scripts/ets/:
 \directlua{
-  require("otminionmath-staircase.lua") % is included via the RaeFeature +staircase below
+  require("otminionmath-staircase.lua") % is included via the RawFeature +staircase below
   require("otminionmath-pairwise.lua")  % will be activated after hyperref has been loaded
 }
 \AddToHook{begindocument/before}{\directlua{luatexbase.add_to_callback ( 
