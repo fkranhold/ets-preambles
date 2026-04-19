@@ -2,6 +2,10 @@
 \usepackage{tikz-cd}
 \tikzcdset{arrow style=math font}
 
+\usetikzlibrary{calc}
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+    
 %% Shorthands for \mathbb, \mathbf, and \mathcal.  Depending on the TeX version,
 %% \bf may still be defined, so we treat this case with a bit more care.
 \newcommand{\bb}[1]{\mathbb{#1}}
