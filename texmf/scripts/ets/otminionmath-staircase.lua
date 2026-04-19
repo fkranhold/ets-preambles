@@ -7,6 +7,27 @@ local mathkerns = {
                 {kern=0}
             },
         },
+        ["u1D447"] = { -- T
+            bottomright = {
+                {height=200,kern=-110},
+                {height=400,kern=-90},
+                {kern=-50}
+            },
+        },
+        ["u1D448"] = { -- U
+            bottomright = {
+                {height=200,kern=-50},
+                {height=400,kern=-40},
+                {kern=-30}
+            },
+        },
+        ["u1D44A"] = { -- W
+            bottomright = {
+                {height=200,kern=-130},
+                {height=400,kern=-100},
+                {kern=-50}
+            },
+        },
         ["u1D453"] = { -- f
             bottomright = {
                 {height=200,kern=-160},
